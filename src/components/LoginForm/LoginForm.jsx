@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import LoadingButton from "@mui/lab/LoadingButton";
 import "./LoginForm.css";
 
 export default function LoginForm() {
   let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
   const notifySuccess = () =>
     toast.success("¡Bienvenido a Alkemy Hotel!", {
       position: "top-right",
@@ -54,21 +57,22 @@ export default function LoginForm() {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            Axios.post("http://challenge-react.alkemy.org/", {
-              email: values.email,
-              password: values.password,
+          setLoading(true);
+          Axios.post("http://challenge-react.alkemy.org/", {
+            email: values.email,
+            password: values.password,
+          })
+            .then((response) => {
+              localStorage.setItem("token", response.data.token);
+              navigate("/home");
+              notifySuccess();
             })
-              .then((response) => {
-                localStorage.setItem("token", response.data.token);
-                navigate("/home");
-                notifySuccess();
-              })
-              .catch((error) => {
-                notifyError();
-              });
-            setSubmitting(false);
-          }, 400);
+            .catch(() => {
+              notifyError();
+            })
+            .finally(() => {
+              setLoading(false);
+            });
         }}
       >
         {({ isSubmitting }) => (
@@ -112,13 +116,14 @@ export default function LoginForm() {
                 </div>
               </div>
 
-              <button
-                className="btn btn-primary w-100 mt-3"
+              <LoadingButton
+                className=" w-100 mt-3"
                 type="submit"
-                disabled={isSubmitting}
+                variant="contained"
+                loading={loading}
               >
                 Iniciar sesión
-              </button>
+              </LoadingButton>
             </Form>
           </div>
         )}
