@@ -23,6 +23,7 @@ export default function HomePage() {
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
+        position: "relative",
       }}
     >
       <Navbar />

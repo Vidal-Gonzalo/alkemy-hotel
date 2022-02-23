@@ -1,31 +1,19 @@
 import React from "react";
-import Switch from "@mui/material/Switch";
 import "./ItemList.css";
-import { FormControlLabel, FormGroup } from "@mui/material";
-import MenuMode from "../MenuMode/MenuMode";
-import SearchMode from "../SearchMode/SearchMode";
+import Item from "../Item/Item";
 
 export default function ItemList(props) {
-  const handleChange = (event) => {
-    props.setMenuMode(event.target.checked);
-  };
-
-  console.log(props.menuMode);
-
+  let items = props.foundedItems.results;
   return (
-    <div className="container-fluid item-list">
-      <div className="switch">
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch checked={props.menuMode} onChange={handleChange} />
-            }
-            label="Menú"
-          />
-        </FormGroup>
-      </div>
-      <div className="box-item-list">
-        {props.menuMode ? <MenuMode /> : <SearchMode />}
+    <div className="container-fluid">
+      <div className="row">
+        {items
+          ? items.map((element) => (
+              <div className=" item-list col-4">
+                <Item key={element.id} item={element} />
+              </div>
+            ))
+          : null}
       </div>
     </div>
   );

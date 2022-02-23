@@ -1,14 +1,39 @@
 .container-box {
   font-family: "Roboto", sans-serif;
-  width: 70%;
+  width: 75%;
   background-color: #f2f1dc;
-  height: 80%;
-  padding: 3em;
-  border-radius: 20px;
+  height: 85%;
+  padding: 2em;
+  border-radius: 10px 10px 10px 10px;
   border: 1px solid #ccc;
+  overflow: scroll;
+  overflow-x: hidden;
   box-shadow: 9px 9px 16px 0px rgba(0, 0, 0, 0.47);
   -webkit-box-shadow: 9px 9px 16px 0px rgba(0, 0, 0, 0.47);
   -moz-box-shadow: 9px 9px 16px 0px rgba(0, 0, 0, 0.47);
+}
+
+.container-box::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.container-box::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.container-box::-webkit-scrollbar-button:increment,
+.container-box::-webkit-scrollbar-button {
+  display: none;
+}
+
+.container-box::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.container-box::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
 }
 
 .search-box {
@@ -29,8 +54,11 @@
   border-radius: 10px;
 }
 
-.wrap-item-list {
+.wrap-switch {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+}
+
+.switch {
+  font-family: "Roboto", sans-serif;
 }
