@@ -52,15 +52,6 @@ export default function SearchMode() {
               setSearchQuery(event.target.value);
             }}
           />
-          {/* <LoadingButton
-            onClick={handleClick}
-            endIcon={<SendIcon />}
-            loading={loading}
-            loadingPosition="end"
-            variant="contained"
-          >
-            Send
-          </LoadingButton> */}
           <LoadingButton
             onClick={searchRecipe}
             type="submit"
