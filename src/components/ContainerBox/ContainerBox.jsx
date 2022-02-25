@@ -12,8 +12,6 @@ export default function ContainerBox() {
     setMode(newMode);
   };
 
-  console.log(mode);
-
   return (
     <div className="container container-box mt-3">
       <div className="wrap-switch mb-3">

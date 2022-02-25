@@ -54,11 +54,6 @@
   border-radius: 10px;
 }
 
-.wrap-switch {
-  display: flex;
-  justify-content: end;
-}
-
 .switch {
   font-family: "Roboto", sans-serif;
 }

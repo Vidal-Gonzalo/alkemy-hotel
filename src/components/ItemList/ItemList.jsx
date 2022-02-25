@@ -7,13 +7,17 @@ export default function ItemList(props) {
   return (
     <div className="container-fluid">
       <div className="row">
-        {items
-          ? items.map((element) => (
-              <div className=" item-list col-4">
-                <Item key={element.id} item={element} />
-              </div>
-            ))
-          : null}
+        {items ? (
+          items.map((element) => (
+            <div key={element.id} className="item-list col-4">
+              <Item item={element} />
+            </div>
+          ))
+        ) : (
+          <div className="no-item">
+            <h5>¡No hay items en tu lista!</h5>
+          </div>
+        )}
       </div>
     </div>
   );

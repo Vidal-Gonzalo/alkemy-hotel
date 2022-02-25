@@ -17,7 +17,7 @@ export default function SearchMode() {
     try {
       setLoading(true);
       Axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=39f22c62f0244c13a532e3162e00e7cc&number=15`
+        `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=24d09563ef874bc18d782542386ff011&number=4`
       ).then((response) => {
         setFoundedItems(response.data);
         setLoading(false);
