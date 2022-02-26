@@ -17,7 +17,7 @@ export default function SearchMode() {
     try {
       setLoading(true);
       Axios.get(
-        `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=24d09563ef874bc18d782542386ff011&number=4`
+        `https://api.spoonacular.com/recipes/complexSearch?query=${searchQuery}&apiKey=a3629b3151ed4be59d37d572433a845f&number=4`
       ).then((response) => {
         setFoundedItems(response.data);
         setLoading(false);
@@ -65,7 +65,7 @@ export default function SearchMode() {
         </form>
       </div>
       <hr />
-      <ItemList foundedItems={foundedItems} />
+      <ItemList items={foundedItems.results} />
     </div>
   );
 }

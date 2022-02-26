@@ -8,21 +8,22 @@ import { Button, CardActionArea } from "@mui/material";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import "./Item.css";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Axios from "axios";
 import { Menu } from "../../context/MenuContext";
+import "./Item.css";
 
 export default function Item({ item }) {
   const [open, setOpen] = useState(false);
   const [itemDetail, setItemDetail] = useState([]);
-  const [itemAdded, setItemAdded] = useState(false);
-  const { addItem } = useContext(Menu);
+  const { menu, addItem, removeItem } = useContext(Menu);
 
   const handleOpen = () => {
     setOpen(true);
     try {
       Axios.get(
-        `https://api.spoonacular.com/recipes/${item.id}/information?apiKey=24d09563ef874bc18d782542386ff011`
+        `https://api.spoonacular.com/recipes/${item.id}/information?apiKey=a3629b3151ed4be59d37d572433a845f`
       ).then((response) => {
         setItemDetail(response.data);
       });
@@ -40,9 +41,8 @@ export default function Item({ item }) {
       readyInMinutes: itemDetail.readyInMinutes,
       price: itemDetail.pricePerServing,
       vegan: itemDetail.vegan,
-      img: item.image,
+      image: item.image,
     });
-    setItemAdded(true);
   };
 
   const style = {
@@ -89,22 +89,38 @@ export default function Item({ item }) {
                   HealthScore: {itemDetail.healthScore} <br />
                   Vegano: {itemDetail.vegan ? "Sí" : "No"} <br />
                 </Typography>
-                <Typography mt={2}>
-                  {itemAdded ? (
+                {menu.filter((item) => item.id === itemDetail.id).length > 0 ? (
+                  <div className="wrap-buttons mt-2">
                     <Button
                       variant="contained"
                       disabled
-                      color="error"
                       startIcon={<DoneIcon />}
+                      className="button"
                     >
                       Elemento agregado al menú
                     </Button>
-                  ) : (
-                    <Button variant="contained" onClick={handlePurchase}>
+
+                    <Button
+                      variant="contained"
+                      color="error"
+                      className="button"
+                      startIcon={<DeleteIcon />}
+                      onClick={() => removeItem(item)}
+                    >
+                      Eliminar del menú
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="wrap-buttons mt-2">
+                    <Button
+                      variant="contained"
+                      onClick={handlePurchase}
+                      startIcon={<AddIcon />}
+                    >
                       Agregar a mi menú
                     </Button>
-                  )}
-                </Typography>
+                  </div>
+                )}
               </>
             ) : (
               <Typography id="modal-modal-error" sx={{ mt: 2 }}>

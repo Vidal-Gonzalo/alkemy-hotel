@@ -21,7 +21,7 @@ export const MenuProvider = ({ children }) => {
     });
 
   const notifyError = () =>
-    toast.error("¡Ya existen 4 ítems en tu menú!", {
+    toast.error("Asegúrate de que sean 2 elementos veganos y 2 no-veganos", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -32,20 +32,8 @@ export const MenuProvider = ({ children }) => {
       theme: "colored",
     });
 
-  const notifyMissingVariety = () =>
-    toast.error("¡Asegúrate de que sean 2 comidas veganas y 2 no-veganas!", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-
-  const notifyExcessiveVegan = () =>
-    toast.error("¡Ya existen 2 ítems veganos en tu menú!", {
+  const notifyDeleted = () =>
+    toast.error("Elemento eliminado de tu menú", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -58,24 +46,62 @@ export const MenuProvider = ({ children }) => {
 
   const addItem = (item) => {
     if (menu.length < 4) {
+      //Condicionales para controlar la cantidad de platos veganos
       if (item.vegan === true && vegan < 2) {
         setVegan(vegan + 1);
         setMenu([...menu, item]);
-      } else {
+        notifySuccess();
+      } else if (item.vegan === true && vegan === 2) {
+        notifyError();
       }
+      //Condicionales para controlar la cantidad de platos no-veganos
+      if (item.vegan === false && noVegan < 2) {
+        setNoVegan(noVegan + 1);
+        setMenu([...menu, item]);
+        notifySuccess();
+      } else if (item.vegan === false && noVegan === 2) {
+        notifyError();
+      }
+    } else {
+      notifyError();
     }
   };
 
   const removeItem = (item) => {
-    let itemRemoved = menu.filter((element) => element.id !== item.id);
-    if (item.vegan) {
-      setVegan(vegan - 1);
+    try {
+      let itemRemoved = menu.filter((element) => element.id !== item.id);
+      if (item.vegan) {
+        setVegan(vegan - 1);
+      } else {
+        setNoVegan(noVegan - 1);
+      }
+      itemRemoved.added = false;
+      setMenu(itemRemoved);
+      notifyDeleted();
+    } catch (err) {
+      console.log(err);
     }
-    setMenu(itemRemoved);
+  };
+
+  const totalPrice = () => {
+    return Math.ceil(menu.reduce((acc, prod) => acc + prod.price, 0));
+  };
+
+  const totalHealthScore = () => {
+    return menu.reduce((acc, prod) => acc + prod.healthScore, 0);
+  };
+
+  const totalTimeToPrepare = () => {
+    return menu.reduce(
+      (acc, prod) => acc + prod.readyInMinutes / menu.length,
+      0
+    );
   };
 
   const clearMenu = () => {
     setMenu([]);
+    setVegan(0);
+    setNoVegan(0);
   };
 
   return (
@@ -83,8 +109,10 @@ export const MenuProvider = ({ children }) => {
       value={{
         menu,
         addItem,
-        vegan,
         removeItem,
+        totalPrice,
+        totalHealthScore,
+        totalTimeToPrepare,
         clearMenu,
       }}
     >

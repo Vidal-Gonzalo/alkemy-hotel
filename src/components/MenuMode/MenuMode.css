@@ -1,10 +1,16 @@
-.table {
-  box-shadow: 9px 9px 16px 0px rgba(0, 0, 0, 0.47);
-  -webkit-box-shadow: 9px 9px 16px 0px rgba(0, 0, 0, 0.47);
-  -moz-box-shadow: 9px 9px 16px 0px rgba(0, 0, 0, 0.47);
-}
-.no-menu {
+.menu {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1em;
+}
+
+.menu-subtitle {
+  text-align: center;
+  font-size: 20px;
+}
+
+.wrap-button {
+  display: flex;
+  justify-content: flex-end;
 }

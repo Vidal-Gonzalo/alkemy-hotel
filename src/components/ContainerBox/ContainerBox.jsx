@@ -6,7 +6,7 @@ import MenuMode from "../MenuMode/MenuMode";
 import SearchMode from "../SearchMode/SearchMode";
 
 export default function ContainerBox() {
-  const [mode, setMode] = useState("search");
+  const [mode, setMode] = useState("menu");
 
   const handleChange = (event, newMode) => {
     setMode(newMode);
@@ -22,8 +22,8 @@ export default function ContainerBox() {
           onChange={handleChange}
           size="small"
         >
-          <ToggleButton value="search">Buscador</ToggleButton>
           <ToggleButton value="menu">Mi menú</ToggleButton>
+          <ToggleButton value="search">Buscador</ToggleButton>
         </ToggleButtonGroup>
       </div>
       {mode === "menu" ? <MenuMode /> : <SearchMode />}

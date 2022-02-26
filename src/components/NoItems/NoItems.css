@@ -1,0 +1,12 @@
+.no-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 2px 2px 8px 0px rgba(31, 30, 30, 0.47);
+  -webkit-box-shadow: 2px 2px 8px 0px rgba(36, 35, 35, 0.47);
+  -moz-box-shadow: 2px 2px 8px 0px rgba(44, 43, 43, 0.47);
+  height: 10em;
+  color: rgb(148, 145, 145);
+}

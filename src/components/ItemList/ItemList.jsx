@@ -1,9 +1,11 @@
 import React from "react";
 import "./ItemList.css";
 import Item from "../Item/Item";
+import NoItems from "../NoItems/NoItems";
 
 export default function ItemList(props) {
-  let items = props.foundedItems.results;
+  let items = props.items;
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -14,9 +16,7 @@ export default function ItemList(props) {
             </div>
           ))
         ) : (
-          <div className="no-item">
-            <h5>¡No hay items en tu lista!</h5>
-          </div>
+          <NoItems />
         )}
       </div>
     </div>

@@ -1,16 +1,4 @@
-.switch {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .item-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.no-item {
   display: flex;
   justify-content: center;
   align-items: center;

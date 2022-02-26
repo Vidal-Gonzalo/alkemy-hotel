@@ -1,0 +1,19 @@
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fcf8cd;
+  border: 1px solid #ccc;
+  box-shadow: 9px 9px 16px 0px rgba(31, 30, 30, 0.47);
+  -webkit-box-shadow: 9px 9px 16px 0px rgba(36, 35, 35, 0.47);
+  -moz-box-shadow: 9px 9px 16px 0px rgba(44, 43, 43, 0.47);
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.stats p {
+  font-size: 1.1em;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+}
