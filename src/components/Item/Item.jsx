@@ -17,13 +17,13 @@ import "./Item.css";
 export default function Item({ item }) {
   const [open, setOpen] = useState(false);
   const [itemDetail, setItemDetail] = useState([]);
-  const { menu, addItem, removeItem } = useContext(Menu);
+  const { mode, menu, addItem, removeItem } = useContext(Menu);
 
   const handleOpen = () => {
     setOpen(true);
     try {
       Axios.get(
-        `https://api.spoonacular.com/recipes/${item.id}/information?apiKey=a3629b3151ed4be59d37d572433a845f`
+        `https://api.spoonacular.com/recipes/${item.id}/information?apiKey=${process.env.REACT_APP_APIKEY}`
       ).then((response) => {
         setItemDetail(response.data);
       });
@@ -62,9 +62,16 @@ export default function Item({ item }) {
         <CardActionArea onClick={handleOpen}>
           <CardMedia component="img" image={item.image} alt={item.title} />
           <CardContent>
-            <Typography gutterBottom variant="p" component="div">
+            <Typography variant="p" component="div">
               {item.title}
             </Typography>
+            {mode === "menu" ? (
+              <Typography gutterBottom>
+                Precio: ${item.price} <br /> Vegano: {item.vegan ? "Sí" : "No"}{" "}
+                <br /> HealthScore: {item.healthScore} <br /> Preparación:{" "}
+                {item.readyInMinutes} minutos
+              </Typography>
+            ) : null}
           </CardContent>
         </CardActionArea>
       </Card>

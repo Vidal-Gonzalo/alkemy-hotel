@@ -1,0 +1,33 @@
+.not-found-box {
+  backdrop-filter: blur(3px) saturate(180%);
+  -webkit-backdrop-filter: blur(3px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1.5em;
+}
+
+.not-found-box h3 {
+  font-size: 3em;
+  color: #fff;
+  text-align: center;
+}
+
+.not-found-box p {
+  font-size: 1.5em;
+  color: #fff;
+  text-align: center;
+}
+
+.not-found-box span,
+.not-found-box a {
+  font-size: 1em;
+  color: #fff;
+  text-align: center;
+}

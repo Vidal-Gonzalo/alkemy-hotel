@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import ContainerBox from "../../components/ContainerBox/ContainerBox";
-import Background from "../../assets/img/background-8.jpg";
+import Background from "../../assets/img/background-2.jpg";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 

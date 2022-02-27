@@ -5,6 +5,7 @@ export const Menu = createContext();
 
 export const MenuProvider = ({ children }) => {
   const [menu, setMenu] = useState([]);
+  const [mode, setMode] = useState("menu");
   const [vegan, setVegan] = useState(0);
   const [noVegan, setNoVegan] = useState(0);
 
@@ -21,7 +22,7 @@ export const MenuProvider = ({ children }) => {
     });
 
   const notifyError = () =>
-    toast.error("Asegúrate de que sean 2 elementos veganos y 2 no-veganos", {
+    toast.error("¡Asegúrate de que sean 2 elementos veganos y 2 no-veganos!", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -33,7 +34,7 @@ export const MenuProvider = ({ children }) => {
     });
 
   const notifyDeleted = () =>
-    toast.error("Elemento eliminado de tu menú", {
+    toast.error("¡Elemento eliminado de tu menú!", {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -98,22 +99,17 @@ export const MenuProvider = ({ children }) => {
     );
   };
 
-  const clearMenu = () => {
-    setMenu([]);
-    setVegan(0);
-    setNoVegan(0);
-  };
-
   return (
     <Menu.Provider
       value={{
+        mode,
+        setMode,
         menu,
         addItem,
         removeItem,
         totalPrice,
         totalHealthScore,
         totalTimeToPrepare,
-        clearMenu,
       }}
     >
       {children}

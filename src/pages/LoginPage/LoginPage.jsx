@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import "./LoginPage.css";
-import Background from "../../assets/img/background-6.jpg";
+import Background from "../../assets/img/background-1.jpg";
 
 export default function LoginPage() {
   return (

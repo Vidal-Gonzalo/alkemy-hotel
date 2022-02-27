@@ -11,7 +11,7 @@ export default function ItemList(props) {
       <div className="row">
         {items ? (
           items.map((element) => (
-            <div key={element.id} className="item-list col-4">
+            <div key={element.id} className="item-list col-12 col-md-4">
               <Item item={element} />
             </div>
           ))

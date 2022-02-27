@@ -36,7 +36,7 @@ export default function LoginForm() {
     });
 
   return (
-    <div className="form-wrap">
+    <div className="container form-wrap">
       <Formik
         initialValues={{ email: "", password: "" }}
         validate={(values) => {
@@ -51,31 +51,29 @@ export default function LoginForm() {
           if (!values.password) {
             errors.password = "Requerido";
           } else if (values.password.length <= 3) {
-            errors.password =
-              "¡La contraseña debe contener más de 3 caracteres!";
+            errors.password = "¡Debe contener más de 3 caracteres!";
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values) => {
           setLoading(true);
-          Axios.post("http://challenge-react.alkemy.org/", {
+          Axios.post(`${process.env.REACT_APP_AUTH_URL}`, {
             email: values.email,
             password: values.password,
           })
             .then((response) => {
               localStorage.setItem("token", response.data.token);
-              navigate("/home");
               notifySuccess();
+              setLoading(false);
+              navigate("/home");
             })
             .catch(() => {
               notifyError();
-            })
-            .finally(() => {
               setLoading(false);
             });
         }}
       >
-        {({ isSubmitting }) => (
+        {() => (
           <div className="form">
             <Form>
               <h3 className="form-title"> Alkemy Hotel </h3>
